@@ -12,18 +12,32 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 // O componente mostra uma lista de cursos e a tabela com os horários de um curso selecionado, com opções de buscar, baixar e voltar
 export default function HorariosCursos() {
+  const [periodoId, setPeriodoId] = useState<string>('');
+  const searchParams = useSearchParams();
+  const tipo = searchParams.get('tipo') ?? '';
   const [rows, setRows] = useState<(string | null)[][]>([]);
   const [maxColumns, setMaxColumns] = useState(0);
   const [courseName, setCourseName] = useState('');
   const [selectedCourse, setSelectedCourse] = useState('todos');
   const [hasSearched, setHasSearched] = useState(false);
-  const searchParams = useSearchParams();
-  const tipo = searchParams.get('tipo');
   const dialogRef = useRef<HTMLDialogElement>(null);
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedPeriodoId = localStorage.getItem('periodoId');
+      if (savedPeriodoId) {
+        setPeriodoId(savedPeriodoId);
+      }
+    }
+  }, []);
 
   const fetchData = async () => {
+    if (!periodoId) {
+      return;
+    }
+
     try {
-      const data = await fetchCourseData(selectedCourse, tipo ?? '');
+      const data = await fetchCourseData(periodoId, selectedCourse, tipo);
       setRows(data.rows);
       setMaxColumns(data.maxColumns);
       setCourseName(data.courseName);
@@ -32,10 +46,6 @@ export default function HorariosCursos() {
       console.error("Erro ao buscar dados dos cursos:", error);
     }
   };
-
-  useEffect(() => {
-    setHasSearched(false);
-  }, [tipo]);
 
   const handleCourseChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCourse(e.target.value);
@@ -78,13 +88,13 @@ export default function HorariosCursos() {
       pdf.text('Nenhum resultado foi encontrado.', 105, 80, { align: 'center' });
       pdf.save('Horário Curso.pdf');
       return;
-    } 
-    
+    }
+
     if (!tableElement) {
       console.error('Tabela não encontrada.');
       return;
     }
-    
+
     html2canvas(tableElement, { scale: 1.5 }).then((canvas) => {
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;

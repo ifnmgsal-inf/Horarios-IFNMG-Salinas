@@ -23,12 +23,12 @@ public class CursosMedioService {
         this.sheetsService = sheetsService;
     }
 
-    public ResponseEntity<Horarios> getSheetsValues(String cursoSelecionado) throws IOException {
+    public ResponseEntity<Horarios> getSheetsValues(String periodoId, String cursoSelecionado) throws IOException {
         
         Curso curso = CursosConstants.CURSOS_MEDIO.getOrDefault(cursoSelecionado, CursosConstants.CURSOS_MEDIO.get("default"));
         
-        List<List<Object>> valuesRange1 = sheetsService.getSheetValues(CursosConstants.RANGE_HORAS_MEDIO);
-        List<List<Object>> valuesRange2 = sheetsService.getSheetValues(CursosConstants.getRangeCompletoMedio(curso));
+        List<List<Object>> valuesRange1 = sheetsService.getSheetValues(periodoId, CursosConstants.RANGE_HORAS_MEDIO);
+        List<List<Object>> valuesRange2 = sheetsService.getSheetValues(periodoId, CursosConstants.getRangeCompletoMedio(curso));
 
         int columnsRange1 = 1;
         int columnsRange2 = valuesRange2.isEmpty() ? 0 : valuesRange2.get(0).size();

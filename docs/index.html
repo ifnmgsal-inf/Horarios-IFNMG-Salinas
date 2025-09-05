@@ -21,7 +21,7 @@
             <h2 class="text-2xl text-center font-bold border-y border-neutral-300 p-2 mb-4 mt-2">👨‍💻 Desenvolvedor</h2>
             <ol class="list-decimal list-inside space-y-3 mb-6">
                 <li>
-                    No início de cada semestre, trocar o link da variável de ambiente do back-end <span class="font-mono font-bold">SPREADSHEET_ID</span> com o novo ID da planilha do <span class="italic">Google Sheets</span> com os horários acadêmicos:
+                    No início de cada semestre, registrar o ID da planilha do período atual com os horários na planilha que contém a lista com todos os IDs das planilhas utilizadas:
                     <div class="ml-5 mt-2 space-y-2">
                         <p class="mb-1"><span class="font-bold">URL da planilha:</span></p>
                         <ul class="list-disc list-inside ml-5 space-y-2">
@@ -29,18 +29,15 @@
                                 <code class="bg-slate-200 p-1 rounded text-sm break-all">https://docs.google.com/spreadsheets/d/<span class="font-bold text-red-600">1CKEFgTwz7k44444VytFDGMlYWyTqf2Zq8HbzcQJHKVI</span>/edit?gid=0#gid=0</code>
                             </li>
                         </ul>
-                        <p class="mb-1 mt-3"><span class="font-bold">Variável de Ambiente:</span></p>
+                        <p class="mb-1 mt-3"><span class="font-bold">ID da planilha a ser registrado:</span></p>
                         <ul class="list-disc list-inside ml-5 space-y-2">
                             <li>
-                                <code class="bg-slate-200 p-1 rounded text-sm break-all">SPREADSHEET_ID=1CKEFgTwz7k44444VytFDGMlYWyTqf2Zq8HbzcQJHKVI</code>
+                                <code class="bg-slate-200 p-1 rounded text-sm break-all">1CKEFgTwz7k44444VytFDGMlYWyTqf2Zq8HbzcQJHKVI</code>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li>
-                    A variável de ambiente do back-end <span class="font-mono font-bold">SPREADSHEET_LOGIN</span> não precisa ser alterada, pois representa o ID da planilha do <span class="italic">Google Sheets</span> com as credenciais de login para acessar a tela de validação de dados.
-                </li>
-                <li>Criar uma <span class="font-bold">cópia da planilha original privada do setor de ensino</span>, que será utilizada como banco de dados do aplicativo. Isso é feito por questões de segurança e para manter um backup do conteúdo original.</li>
+                <li>Criar uma <span class="font-bold">cópia da planilha original privada do setor de ensino</span>, que será utilizada como banco de dados da plataforma. Isso é feito por questões de segurança e para manter um backup do conteúdo original.</li>
                 <li>Configurar o acesso da planilha para <span class="font-bold">qualquer pessoa com o link</span>, para que a API do <span class="italic">Google Sheets</span> possa ler os dados da planilha.</li>
                 <li>Durante testes, fazer uma <span class="font-bold">cópia da planilha utilizada no sistema</span> para evitar edições indevidas e modificações acidentais em células.</li>
                 <li><span class="font-bold">(Se usar Koyeb)</span> Acessar a plataforma de deploy do back-end <span class="font-bold">Koyeb</span> pelo menos 1 vez ao mês para evitar que o serviço seja interrompido, pois o modo gratuito exige acesso periódico mensal.</li>

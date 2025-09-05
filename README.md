@@ -83,7 +83,6 @@ Você pode configurar essas variáveis de ambiente criando um arquivo `.env` na 
 
 #### Back-end
 - `API_KEY`: URL da API do Google Sheets.
-- `SPREADSHEET_ID`: URL da Planilha do Google Sheets dos Horários.
 - `SPREADSHEET_LOGIN`: URL da Planilha do Google Sheets do Login.
 - `FRONTEND_URL`: URL do Front-end.
 
@@ -91,7 +90,6 @@ Exemplo:
 
 ```env
 API_KEY=AIzaS...
-SPREADSHEET_ID=1CKEFgTwz7k11111VytFDGMlYWyTqf2Zq8HbzcQJHKVI
 SPREADSHEET_LOGIN=1CKEFgTwz7k22222VytFDGMlYWyTqf2Zq8HbzcQJHKVI
 FRONTEND_URL=http://localhost:3000
 ```

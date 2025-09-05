@@ -24,7 +24,7 @@ public class ValidacoesService {
         this.sheetsService = sheetsService;
     }
 
-    public ResponseEntity<Horarios> getSheetsValues() throws IOException {
+    public ResponseEntity<Horarios> getSheetsValues(String periodoId) throws IOException {
         
         List<String> validacoes = new ArrayList<>();
         List<List<Object>> valuesSuperior = new ArrayList<>();
@@ -41,7 +41,7 @@ public class ValidacoesService {
         boolean intervaloValidacaoValido = false;
 
         try {
-            valuesMedio = sheetsService.getSheetValues(CursosConstants.RANGE_MEDIO);
+            valuesMedio = sheetsService.getSheetValues(periodoId, CursosConstants.RANGE_MEDIO);
             guiaMedioExiste = true;
             intervaloMedioValido = valuesMedio.size() == CursosConstants.QTD_LINHAS_MEDIO && valuesMedio.get(0).size() == CursosConstants.QTD_COLUNAS_MEDIO;
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class ValidacoesService {
         }
     
         try {
-            valuesSuperior = sheetsService.getSheetValues(CursosConstants.RANGE_SUPERIOR);
+            valuesSuperior = sheetsService.getSheetValues(periodoId, CursosConstants.RANGE_SUPERIOR);
             guiaSuperiorExiste = true;
             intervaloSuperiorValido = valuesSuperior.size() == CursosConstants.QTD_LINHAS_SUPERIOR && valuesSuperior.get(0).size() == CursosConstants.QTD_COLUNAS_SUPERIOR;
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class ValidacoesService {
         }
     
         try {
-            valuesValidacao = sheetsService.getSheetValues(ProfessoresSalasConstants.RANGE_PROFESSORES);
+            valuesValidacao = sheetsService.getSheetValues(periodoId, ProfessoresSalasConstants.RANGE_PROFESSORES);
             guiaValidacaoExiste = true;
             intervaloValidacaoValido = !valuesValidacao.isEmpty() && valuesValidacao.get(0).size() >= 1; // Se está vazio & Qtd Colunas
         } catch (Exception e) {

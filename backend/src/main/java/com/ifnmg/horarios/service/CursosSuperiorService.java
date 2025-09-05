@@ -24,12 +24,12 @@ public class CursosSuperiorService {
         this.sheetsService = sheetsService;
     }
 
-    public ResponseEntity<Horarios> getSheetsValues(String cursoSelecionado) throws IOException {
+    public ResponseEntity<Horarios> getSheetsValues(String periodoId, String cursoSelecionado) throws IOException {
 
         Curso curso = CursosConstants.CURSOS_SUPERIOR.getOrDefault(cursoSelecionado, CursosConstants.CURSOS_SUPERIOR.get("default"));
 
-        List<List<Object>> valuesRange1 = sheetsService.getSheetValues(CursosConstants.RANGE_HORAS_SUPERIOR);
-        List<List<Object>> valuesRange2 = sheetsService.getSheetValues(CursosConstants.getRangeCompletoSuperior(curso));
+        List<List<Object>> valuesRange1 = sheetsService.getSheetValues(periodoId, CursosConstants.RANGE_HORAS_SUPERIOR);
+        List<List<Object>> valuesRange2 = sheetsService.getSheetValues(periodoId, CursosConstants.getRangeCompletoSuperior(curso));
 
         List<List<Object>> updatedValues = processValuesForCourse(cursoSelecionado, valuesRange1, valuesRange2);
 

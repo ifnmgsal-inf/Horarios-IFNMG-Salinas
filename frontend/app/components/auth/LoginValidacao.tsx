@@ -1,16 +1,24 @@
 import Image from 'next/image';
-import { useRouter } from "next/navigation";
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import { AxiosError } from 'axios';
 import { fetchLoginData } from '../../api/routes';
 import BotaoVoltar from '../common/buttons/BackButton';
 // Componente para verificar credenciais de login antes de entrar na tela de validação
 export default function LoginValidacao() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const periodoIdFromUrl = searchParams.get('periodoId') ?? '';
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [erros, setErros] = useState({ usuario: false, senha: false });
   const [mensagemErro, setMensagemErro] = useState('');
+
+  useEffect(() => {
+    if (periodoIdFromUrl) {
+      localStorage.setItem('periodoId', periodoIdFromUrl);
+    }
+  }, [periodoIdFromUrl]);
 
   const validarCampos = async () => {
     const usuarioValido = usuario.trim() !== '';
@@ -28,8 +36,14 @@ export default function LoginValidacao() {
     try {
       await fetchLoginData(usuario.trim(), senha.trim());
       localStorage.setItem('autenticado', 'true');
-      window.history.replaceState(null, '', '/');
-      router.replace('/pages/Validacao');
+      
+      const periodoId = periodoIdFromUrl || (typeof window !== 'undefined' ? localStorage.getItem('periodoId') ?? '' : '');
+
+      if (periodoId) {
+        router.replace(`/pages/Validacao?periodoId=${encodeURIComponent(periodoId)}`);
+      } else {
+        router.replace('/pages/Validacao');
+      }
     } catch (error: unknown) {
       if (error instanceof AxiosError && error.response?.status === 401) {
         setMensagemErro("Usuário ou senha inválidos!");

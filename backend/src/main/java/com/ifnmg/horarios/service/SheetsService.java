@@ -21,6 +21,7 @@ public class SheetsService {
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 
     private final Sheets sheetsService;
+
     // Cria o cliente da API do Google Sheets
     public SheetsService() throws GeneralSecurityException, IOException {
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -28,10 +29,11 @@ public class SheetsService {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
-    // Consulta valores na planilha principal com o intervalo especificado
-    public List<List<Object>> getSheetValues(String range) throws IOException {
+
+    // Consultar valores de uma planilha de horários de acordo com o período e o intervalo especificado
+    public List<List<Object>> getSheetValues(String spreadsheetId, String range) throws IOException {
         ValueRange response = sheetsService.spreadsheets().values()
-                .get(EnvConfig.SPREADSHEET_ID, range)
+                .get(spreadsheetId, range)
                 .setKey(EnvConfig.API_KEY)
                 .execute();
         return response.getValues();

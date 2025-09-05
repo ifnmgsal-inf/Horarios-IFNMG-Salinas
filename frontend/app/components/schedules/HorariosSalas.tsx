@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchSalaData } from '../../api/routes';
 import { OptionsSalas } from '../../constants/salas';
 import ListaSuspensa from '../common/dropdowns/DropdownList';
@@ -10,15 +10,29 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 // O componente mostra uma lista de salas e a tabela com os horários de ocupação de uma sala selecionada, com opções de buscar, baixar e voltar
 export default function HorariosSalas() {
+  const [periodoId, setPeriodoId] = useState<string>('');
   const [rows, setRows] = useState<(string | null)[][]>([]);
   const [selectedSala, setselectedSala] = useState('');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedPeriodoId = localStorage.getItem('periodoId');
+      if (savedPeriodoId) {
+        setPeriodoId(savedPeriodoId);
+      }
+    }
+  }, []);
+
   const fetchData = async () => {
+    if (!periodoId) {
+      return;
+    }
+
     try {
-      const data = await fetchSalaData(selectedSala);
+      const data = await fetchSalaData(periodoId, selectedSala);
       setRows(data.rows);
     } catch (error) {
-      console.error("Erro ao buscar dados dos salas:", error);
+      console.error("Erro ao buscar dados das salas:", error);
     }
   };
 

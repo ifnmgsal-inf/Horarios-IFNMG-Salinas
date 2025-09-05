@@ -9,14 +9,28 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 // O componente mostra uma lista de professores, a tabela com os horários de um professor selecionado e a carga horária total, com opções de buscar, baixar e voltar
 export default function HorariosProfessores() {
+  const [periodoId, setPeriodoId] = useState<string>('');
   const [rows, setRows] = useState<(string | null)[][]>([]);
   const [horas, setHoras] = useState('');
   const [professores, setProfessores] = useState<string[]>([]);
   const [selectedProfessor, setSelectedProfessor] = useState('');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedPeriodoId = localStorage.getItem('periodoId');
+      if (savedPeriodoId) {
+        setPeriodoId(savedPeriodoId);
+      }
+    }
+  }, []);
+
   const fetchData = async () => {
+    if (!periodoId) {
+      return;
+    }
+
     try {
-      const data = await fetchProfessorData(selectedProfessor);
+      const data = await fetchProfessorData(periodoId, selectedProfessor);
       setRows(data.rows);
       setHoras(data.horas);
     } catch (error) {
@@ -26,8 +40,12 @@ export default function HorariosProfessores() {
 
   useEffect(() => {
     const fetchProfessores = async () => {
+      if (!periodoId) {
+        return;
+      }
+
       try {
-        const data = await fetchProfessorData('');
+        const data = await fetchProfessorData(periodoId, '');
         setProfessores(data.professores);
       } catch (error) {
         console.error("Erro ao buscar lista de professores:", error);
@@ -35,7 +53,7 @@ export default function HorariosProfessores() {
     };
 
     fetchProfessores();
-  }, []);
+  }, [periodoId]);
 
   const handleProfessorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProfessor(e.target.value);

@@ -6,7 +6,6 @@ public class EnvConfig {
     private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
     // Variáveis de ambiente do projeto
     public static final String API_KEY = getEnvVar("API_KEY");
-    public static final String SPREADSHEET_ID = getEnvVar("SPREADSHEET_ID");
     public static final String SPREADSHEET_LOGIN = getEnvVar("SPREADSHEET_LOGIN");
     public static final String FRONTEND_URL = getEnvVar("FRONTEND_URL");
 

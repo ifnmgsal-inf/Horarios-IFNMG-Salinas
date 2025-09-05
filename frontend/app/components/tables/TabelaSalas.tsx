@@ -8,7 +8,7 @@ export default function TabelaSalas({ rows }: TabelaSalasProps) {
 
         return (
             <span className={isMultipleClasses ? 'font-bold' : ''}>
-                {isMultipleClasses ? `[CHOQUE] - ${content}` : content}
+                {content}
             </span>
         );
     };
