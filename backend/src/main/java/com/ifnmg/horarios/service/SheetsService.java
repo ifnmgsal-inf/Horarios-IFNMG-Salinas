@@ -29,7 +29,6 @@ public class SheetsService {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
     }
-
     // Consultar valores de uma planilha de horários de acordo com o período e o intervalo especificado
     public List<List<Object>> getSheetValues(String spreadsheetId, String range) throws IOException {
         ValueRange response = sheetsService.spreadsheets().values()

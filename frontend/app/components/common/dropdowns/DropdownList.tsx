@@ -7,7 +7,7 @@ interface DropdownListProps {
   label: string;
   staticOptions?: { [key: string]: string };
 }
-// O Componente é a lista suspensa usada em Cursos, Professores e Salas
+// O Componente é a lista suspensa usada nas páginas da plataforma
 export default function DropdownList({ value, onChange, options, label, staticOptions }: DropdownListProps) {
   return (
     <div className="relative mb-2">
