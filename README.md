@@ -2,7 +2,12 @@
 
 O projeto é uma plataforma web que mostra os horários dos cursos, professores e ocupação de salas do IFNMG Campus Salinas. O objetivo do projeto é facilitar o acesso aos horários para melhor organização e auxiliar o setor de ensino na manutenção da planilha. Ou seja, os dados são recebidos da planilha para o aplicativo.
 
-## 2. Tecnologias utilizadas
+## 2. Branches
+
+- `main`: Branch de **produção**, utilizado para o deploy da plataforma.
+- `dev`: Branch de **desenvolvimento**, usado para implementar e testar novas funcionalidades localmente antes de serem enviadas para a produção.
+
+## 3. Tecnologias utilizadas
 
 ### Front-end
 
@@ -23,7 +28,7 @@ O projeto é uma plataforma web que mostra os horários dos cursos, professores 
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-## 3. Instalação
+## 4. Instalação
 
 - Antes da instalação certifique-se de ter o [Node.js](https://nodejs.org) instalado na sua máquina.
 
@@ -41,7 +46,7 @@ npm install
 
 - Isso instalará todas as dependências listadas no arquivo `package.json`
 
-## 4. Execução
+## 5. Execução
 
 - Para iniciar o projeto em modo de desenvolvimento
 
@@ -57,7 +62,7 @@ npm run dev
 
 - Dentro da pasta `backend` você tem que executar o arquivo `HorariosApplication.java`
 
-## 5. Build
+## 6. Build
 
 - Para criar uma versão de produção do projeto
 
@@ -77,7 +82,7 @@ npm run build
 mvn package
 ```
 
-### 6. Variáveis de ambiente
+### 7. Variáveis de ambiente
 
 Você pode configurar essas variáveis de ambiente criando um arquivo `.env` na raiz das pastas `backend` e `frontend` do projeto e definindo as variáveis.
 
@@ -103,10 +108,10 @@ Exemplo:
 NEXT_PUBLIC_BACKEND_URL=http://localhost:8080
 ```
 
-## 7. Documentação da Planilha
+## 8. Documentação da Planilha
 
 - [Documentação](https://ifnmgsal-inf.github.io/Horarios-IFNMG-Salinas/)
 
-## 8. Licença
+## 9. Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.

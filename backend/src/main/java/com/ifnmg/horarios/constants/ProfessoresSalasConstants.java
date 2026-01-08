@@ -5,10 +5,10 @@ import java.util.List;
 public class ProfessoresSalasConstants {
     public static final String GUIA_PROFESSOR = "Validação de Dados";
     
-    public static final String RANGE_MEDIO_2 = "Horário - Ensino Médio!C3:V76";
-    public static final String RANGE_MEDIO_TURMAS = "Horário - Ensino Médio!C2:V2";
+    public static final String RANGE_MEDIO_2 = "Horário - Ensino Médio!C3:Z76";
+    public static final String RANGE_MEDIO_TURMAS = "Horário - Ensino Médio!C2:Z2";
 
-    public static final int COLUMNS_MEDIO_2 = 20;
+    public static final int COLUMNS_MEDIO_2 = 24;
     public static final int LINES_PER_DAY_MEDIO = 15;
     
     public static final String RANGE_SUPERIOR_1 = "Horário - Graduação!B3:B106";

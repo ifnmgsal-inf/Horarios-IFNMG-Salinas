@@ -40,7 +40,7 @@ export default function TabelaValidacao({ rows, validacoes }: TabelaValidacaoPro
                     </tr>
                     <tr>
                         <td className="dark:text-white border border-neutral-500 p-3 text-left">
-                            O intervalo (<span className="font-bold">B2:V76</span>) existe em (<span className="font-bold">Horário - Ensino Médio</span>)?
+                            O intervalo (<span className="font-bold">B2:Z76</span>) existe em (<span className="font-bold">Horário - Ensino Médio</span>)?
                         </td>
                         <td className="dark:text-white border border-neutral-500 p-3 text-center">{getResultado(3)}</td>
                     </tr>

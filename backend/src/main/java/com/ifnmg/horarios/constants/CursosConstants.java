@@ -7,11 +7,11 @@ import com.ifnmg.horarios.model.Curso;
 public class CursosConstants {
     public static final String GUIA_MEDIO = "Horário - Ensino Médio";
     
-    public static final String RANGE_MEDIO = "Horário - Ensino Médio!B2:V76";
+    public static final String RANGE_MEDIO = "Horário - Ensino Médio!B2:Z76";
     public static final String RANGE_HORAS_MEDIO = GUIA_MEDIO + "!B2:B76";
     
     public static final int LINES_PER_DAYS_MEDIO = 15;
-    public static final int QTD_COLUNAS_MEDIO = 21;
+    public static final int QTD_COLUNAS_MEDIO = 25;
     public static final int QTD_LINHAS_MEDIO = 75;
     
     public static final String GUIA_SUPERIOR = "Horário - Graduação";
@@ -30,7 +30,9 @@ public class CursosConstants {
         Map.entry("agroindustria", new Curso("Técnico em Agroindústria", "C2", "H76")),
         Map.entry("agropecuaria", new Curso("Técnico em Agropecuária", "J2", "O76")),
         Map.entry("informatica", new Curso("Técnico em Informática", "Q2", "V76")),
-        Map.entry("default", new Curso("Todos os Cursos - Ensino Médio", "C2", "V76"))
+        Map.entry("quimica", new Curso("Técnico em Química", "X2", "X76")),
+        Map.entry("ambiente", new Curso("Técnico em Meio Ambiente", "Z2", "Z76")),
+        Map.entry("default", new Curso("Todos os Cursos - Ensino Médio", "C2", "Z76"))
     );
     // Lista de cursos superiores disponíveis
     public static final Map<String, Curso> CURSOS_SUPERIOR = Map.ofEntries(
