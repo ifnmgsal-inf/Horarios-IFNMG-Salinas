@@ -2,7 +2,9 @@
 export const OptionsEnsinoMedio = {
     agroindustria: "Técnico em Agroindústria",
     agropecuaria: "Técnico em Agropecuária",
-    informatica: "Técnico em Informática"
+    informatica: "Técnico em Informática",
+    quimica: "Técnico em Química",
+    ambiente: "Técnico em Meio Ambiente"
 };
 
 export const OptionsEnsinoSuperior = {
